@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- head definitions go here -->
+    </head>
+    <body>
+        <!-- the content goes here -->
+    </body>
+	
+	<script> 
+	
+	function getHashTags(headline)
+	{
+		let partsArray = headline.split(' ');
+		let topThree = ["", "", ""];
+		for(let i = 0; i < partsArray.length; i++)
+		{
+			if(!((partsArray[i] === topThree[0])||(partsArray[i] === topThree[1])||(partsArray[i] === topThree[2])))
+			{
+			if(partsArray[i].length > topThree[0].length)
+			{
+				topThree[2] = topThree[1];
+				topThree[1] = topThree[0];
+				topThree[0] = partsArray[i];
+			}else if(partsArray[i].length > topThree[1].length)
+			{
+				topThree[2] = topThree[1];
+				topThree[1] = partsArray[i];
+			}else if(partsArray[i].length > topThree[2].length)
+			{
+				topThree[2] = partsArray[i];
+			}
+			}
+			
+		}
+		
+		let returnArray = ["#", "#", "#"];
+		returnArray[0] += topThree[0];
+		returnArray[1] += topThree[1];
+		returnArray[2] += topThree[2];
+		
+		for(let i = 2; i >= 0; i--)
+		{
+			if(returnArray[i] === "#")
+			{
+				returnArray.pop();
+			}
+		}
+		
+		return returnArray;
+	
+	}
+	
+	console.log(getHashTags("How the Avocado Became the Fruit of the Global Trade"));
+
+	console.log(getHashTags("Why You Will Probably Pay More for Your Christmas Tree This Year"));
+
+	console.log(getHashTags("Hey Parents, Surprise, Fruit Juice Is Not Fruit"));
+
+	console.log(getHashTags("Visualizing Science"));	
+	
+	</script>
+</html>
